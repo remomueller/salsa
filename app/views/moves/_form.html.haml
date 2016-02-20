@@ -1,0 +1,25 @@
+= form_for(move) do |f|
+  - if move.errors.any?
+    %div
+      %h2
+        = pluralize move.errors.count, 'error'
+        prohibited this move from being saved
+
+      %ul
+        - move.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :name
+    = f.text_field :name
+
+  .field
+    = f.label :description
+    = f.text_area :description
+
+  .field
+    = f.label :video_url
+    = f.text_area :video_url
+
+  .actions
+    = f.submit
