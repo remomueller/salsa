@@ -22,8 +22,13 @@ class Move < ApplicationRecord
 
   def tag_tokens=(tokens)
     self.tags = tokens.to_s.split(',').collect do |token|
-      Tag.where('LOWER(name) = ?', token.downcase).first_or_create(name: token.downcase)
+      find_or_create_tag(token)
     end
     save
+  end
+
+  def find_or_create_tag(token)
+    token_name = token.downcase.strip
+    Tag.where('LOWER(name) = ?', token_name).first_or_create(name: token_name)
   end
 end
