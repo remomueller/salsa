@@ -16,7 +16,8 @@
   - @move.tags.each do |tag|
     = link_to tag.name, tag, class: 'btn btn-xs btn-default'
 
-%hr
+- if @move.video_url.present?
+  %hr
 
-.embed-responsive.embed-responsive-16by9{ style: 'margin-bottom: 20px' }
-  %iframe.embed-responsive-item{ src: @move.video_url, webkitallowfullscreen: true, mozallowfullscreen: true, allowfullscreen: true }
+  .embed-responsive.embed-responsive-16by9{ style: 'margin-bottom: 20px' }
+    %iframe.embed-responsive-item{ src: @move.video_url, webkitallowfullscreen: true, mozallowfullscreen: true, allowfullscreen: true }

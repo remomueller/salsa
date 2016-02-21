@@ -8,7 +8,7 @@ class Move < ApplicationRecord
   # Scopes
 
   # Validation
-  validates :name, :video_url, presence: true
+  validates :name, presence: true
 
   # Relationships
   has_many :move_tags
