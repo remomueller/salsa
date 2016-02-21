@@ -21,11 +21,14 @@ class MovesControllerTest < ActionDispatch::IntegrationTest
   test 'should create move' do
     assert_difference('Tag.count', 1) do
       assert_difference('Move.count') do
-        post moves_url, params: { move: { name: @move.name, description: @move.description, video_url: @move.video_url, tag_tokens: 'wrap, cross body' } }
+        post moves_url, params: { move: { name: @move.name,
+                                          description: @move.description,
+                                          video_url: @move.video_url,
+                                          tag_tokens: 'wrap, cross body, back break' } }
       end
     end
 
-    assert_equal 2, Move.last.tags.count
+    assert_equal 3, Move.last.tags.count
 
     assert_redirected_to move_path(Move.last)
   end
@@ -41,7 +44,10 @@ class MovesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should update move' do
-    patch move_url(@move), params: { move: { name: @move.name, description: @move.description, video_url: @move.video_url, tag_tokens: '' } }
+    patch move_url(@move), params: { move: { name: @move.name,
+                                             description: @move.description,
+                                             video_url: @move.video_url,
+                                             tag_tokens: '' } }
     assert_redirected_to move_path(@move)
   end
 

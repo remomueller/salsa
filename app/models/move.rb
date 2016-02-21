@@ -21,7 +21,8 @@ class Move < ApplicationRecord
   end
 
   def tag_tokens=(tokens)
-    self.tags = tokens.to_s.split(',').collect do |token|
+    clean_tokens = tokens.to_s.split(',').collect(&:strip).reject(&:blank?).uniq
+    self.tags = clean_tokens.collect do |token|
       find_or_create_tag(token)
     end
     save
