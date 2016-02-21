@@ -3,7 +3,7 @@
 # Allows moves to be created, viewed, and filtered
 class MovesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_move, only: [:show, :edit, :update, :destroy]
+  before_action :set_move, only: [:show, :edit, :update, :practiced_today, :destroy]
 
   # GET /moves
   def index
@@ -44,6 +44,12 @@ class MovesController < ApplicationController
     else
       render :edit
     end
+  end
+
+  # POST /moves/1/practiced_today
+  def practiced_today
+    @move.add_practice_date(current_user, Time.zone.today)
+    redirect_to @move, notice: 'Great job practicing!'
   end
 
   # DELETE /moves/1

@@ -13,6 +13,7 @@
       %th Name
       %th Tags
       %th Created
+      %th.center Practiced Today
       %th{ colspan: 2 }
 
   %tbody
@@ -27,5 +28,8 @@
               = succeed ',' do
                 %small= link_to tag.name, moves_path(tag: tag.name)
         %td= move.created_at.strftime('%a, %B %d, %Y')
+        %td.center
+          - if move.practiced_today?
+            %span.glyphicon.glyphicon-check
         %td= link_to 'Edit', edit_move_path(move)
         %td= link_to 'Destroy', move, method: :delete, data: { confirm: 'Are you sure?' }

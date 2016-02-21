@@ -2,6 +2,10 @@
 
 = link_to 'Edit', edit_move_path(@move), class: 'btn btn-xs btn-default'
 = link_to 'Back', moves_path, class: 'btn btn-xs btn-default'
+- if @move.practiced_today?
+  %span.label.label-success Practiced!
+- else
+  = link_to 'I Practiced This Today!', practiced_today_move_path(@move), method: :post, class: 'btn btn-primary btn-xs'
 
 %p
   %strong Name
@@ -21,3 +25,9 @@
 
   .embed-responsive.embed-responsive-16by9{ style: 'margin-bottom: 20px' }
     %iframe.embed-responsive-item{ src: @move.video_url, webkitallowfullscreen: true, mozallowfullscreen: true, allowfullscreen: true }
+
+%p
+  %strong Practice Dates
+  %ul
+    - @move.user_moves.pluck(:practiced_on).each do |d|
+      %li= d.strftime('%a, %B %d, %Y')

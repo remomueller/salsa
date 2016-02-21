@@ -5,7 +5,7 @@ require 'test_helper'
 # Tests to assure moves can be viewed, created, and modified
 class MovesControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @move = moves(:one)
+    @move = moves(:cross_body)
   end
 
   test 'should get index as regular user' do
@@ -28,7 +28,7 @@ class MovesControllerTest < ActionDispatch::IntegrationTest
 
   test 'should create move as regular user' do
     login(users(:regular))
-    assert_difference('Tag.count', 1) do
+    assert_difference('Tag.count') do
       assert_difference('Move.count') do
         post moves_url, params: { move: { name: @move.name,
                                           description: @move.description,
@@ -60,6 +60,15 @@ class MovesControllerTest < ActionDispatch::IntegrationTest
                                              description: @move.description,
                                              video_url: @move.video_url,
                                              tag_tokens: '' } }
+    assert_redirected_to move_path(@move)
+  end
+
+  test 'should add practiced today as regular user' do
+    login(users(:regular))
+    assert_difference('UserMove.count') do
+      post practiced_today_move_url(@move)
+    end
+
     assert_redirected_to move_path(@move)
   end
 

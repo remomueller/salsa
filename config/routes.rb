@@ -6,7 +6,11 @@ Rails.application.routes.draw do
     get :version
   end
 
-  resources :moves
+  resources :moves do
+    member do
+      post :practiced_today
+    end
+  end
 
   resources :tags
 

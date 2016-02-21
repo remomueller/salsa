@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+cross_body:
   user: regular
-  name: MyString
-  description: MyText
-  video_url: MyText
+  name: Cross Body
+  description: This is a core move that demonstrates how to do a cross body lead.
+  # video_url:
 
-two:
+right_turn:
   user: regular
-  name: MyString
-  description: MyText
-  video_url: MyText
+  name: Right Turn for Follow
+  description: This demonstrates how to do a right turn for the follow.
+  # video_url:

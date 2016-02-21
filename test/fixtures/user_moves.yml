@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: regular
+  move: cross_body
+  practiced_on: 2016-02-20
+
+two:
+  user: regular
+  move: right_turn
+  practiced_on: 2016-02-20

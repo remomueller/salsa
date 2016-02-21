@@ -18,6 +18,7 @@ class User < ApplicationRecord
   # Relationships
   has_many :moves
   has_many :tags
+  has_many :user_moves
 
   # Methods
 

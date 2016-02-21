@@ -24,4 +24,7 @@
     = javascript_tag "var root_url='#{request.script_name + '/'}';"
   %body
     = link_to 'HOME', root_path
+
+    = render 'layouts/flash_messages'
+
     .container= yield
