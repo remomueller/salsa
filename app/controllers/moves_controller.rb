@@ -6,7 +6,9 @@ class MovesController < ApplicationController
 
   # GET /moves
   def index
-    @moves = Move.all
+    move_scope = Move.all
+    move_scope = move_scope.joins(:tags).merge(Tag.where(name: params[:tag])) if params[:tag].present?
+    @moves = move_scope
   end
 
   # GET /moves/1

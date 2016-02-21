@@ -1,5 +1,12 @@
 %h1 Moves
 
+= link_to 'New Move', new_move_path
+- if params[:tag].present?
+  Filtering by
+  = succeed '.' do
+    %code=params[:tag]
+  = link_to 'Clear Filter', moves_path
+
 %table.table.table-striped
   %thead
     %tr
@@ -12,11 +19,13 @@
     - @moves.each do |move|
       %tr
         %td= link_to move.name, move
-        %td= move.tags.pluck(:name).join(', ')
+        %td
+          - move.tags.each_with_index do |tag, index|
+            - if index + 1 == move.tags.count
+              %small= link_to tag.name, moves_path(tag: tag.name)
+            - else
+              = succeed ',' do
+                %small= link_to tag.name, moves_path(tag: tag.name)
         %td= move.created_at.strftime('%a, %B %d, %Y')
         %td= link_to 'Edit', edit_move_path(move)
         %td= link_to 'Destroy', move, method: :delete, data: { confirm: 'Are you sure?' }
-
-%br
-
-= link_to 'New Move', new_move_path
