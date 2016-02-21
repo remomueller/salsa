@@ -1,5 +1,5 @@
 // // Bootstrap and general variable definitions
-// @import 'variables/all';
+@import 'variables/all';
 
 // Core Bootstrap styles
 @import 'bootstrap-sprockets';
@@ -9,7 +9,7 @@
 // @import 'mixins/all';
 
 // // App specific styles
-// @import 'components/all';
+@import 'components/all';
 // @import 'extensions/all';
 // @import 'fixes/all';
 @import 'objects/all';

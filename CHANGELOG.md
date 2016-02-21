@@ -2,6 +2,7 @@
 
 - **General Changes**
   - Initial framework using Rails 5.0.0.beta2
+  - Added OpenSans font
 - **Moves Added**
   - Added ability to create, view, modify, and search through moves
 - **Tags Added**
