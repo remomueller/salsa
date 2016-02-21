@@ -55,5 +55,5 @@ Rails.application.configure do
   # config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   # Set the relative root, if it exists
-  config.action_controller.relative_url_root  = URI.parse(ENV['website_url']).path rescue nil
+  config.action_controller.relative_url_root = URI.parse(ENV['website_url']).path rescue nil
 end
