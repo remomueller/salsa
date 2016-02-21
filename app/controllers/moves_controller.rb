@@ -54,6 +54,6 @@ class MovesController < ApplicationController
   end
 
   def move_params
-    params.require(:move).permit(:name, :description, :video_url)
+    params.require(:move).permit(:name, :description, :video_url, :tag_tokens)
   end
 end

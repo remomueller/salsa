@@ -1,0 +1,20 @@
+= form_for tag, html: { class: 'form-horizontal' } do |f|
+  - if tag.errors.any?
+    .alert.alert-warning
+      %strong
+        = pluralize tag.errors.count, 'error'
+        prohibited this tag from being saved
+
+      %ul
+        - tag.errors.full_messages.each do |message|
+          %li= message
+
+  .form-group
+    = f.label :name, nil, class: 'col-md-2 control-label'
+    .col-md-10
+      = f.text_field :name, class: 'form-control'
+
+  .form-group
+    .col-md-10.col-md-offset-2
+      = f.submit nil, class: 'btn btn-primary'
+      = link_to 'cancel', (tag.new_record? ? tags_path : tag)

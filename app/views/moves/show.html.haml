@@ -1,15 +1,22 @@
+%h1= @move.name
+
+= link_to 'Edit', edit_move_path(@move), class: 'btn btn-xs btn-default'
+= link_to 'Back', moves_path, class: 'btn btn-xs btn-default'
+
 %p
   %strong Name
   = @move.name
 
 %p
   %strong Description
-  = @move.description
+  = simple_format @move.description
 
 %p
-  %strong Video URL
-  = @move.video_url
+  %strong Tags
+  - @move.tags.each do |tag|
+    = link_to tag.name, tag, class: 'btn btn-xs btn-default'
 
-= link_to 'Edit', edit_move_path(@move)
-|
-= link_to 'Back', moves_path
+%hr
+
+.embed-responsive.embed-responsive-16by9{ style: 'margin-bottom: 20px' }
+  %iframe.embed-responsive-item{ src: @move.video_url, webkitallowfullscreen: true, mozallowfullscreen: true, allowfullscreen: true }
