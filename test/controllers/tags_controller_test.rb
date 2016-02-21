@@ -8,17 +8,20 @@ class TagsControllerTest < ActionDispatch::IntegrationTest
     @tag = tags(:one)
   end
 
-  test 'should get index' do
+  test 'should get index as regular user' do
+    login(users(:regular))
     get tags_url
     assert_response :success
   end
 
-  test 'should get new' do
+  test 'should get new as regular user' do
+    login(users(:regular))
     get new_tag_url
     assert_response :success
   end
 
-  test 'should create tag' do
+  test 'should create tag as regular user' do
+    login(users(:regular))
     assert_difference('Tag.count') do
       post tags_url, params: { tag: { name: 'New Tag' } }
     end
@@ -26,23 +29,27 @@ class TagsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to tag_path(Tag.last)
   end
 
-  test 'should show tag' do
+  test 'should show tag as regular user' do
+    login(users(:regular))
     get tag_url(@tag)
     assert_response :success
   end
 
-  test 'should get edit' do
+  test 'should get edit as regular user' do
+    login(users(:regular))
     get edit_tag_url(@tag)
     assert_response :success
   end
 
-  test 'should update tag' do
+  test 'should update tag as regular user' do
+    login(users(:regular))
     patch tag_url(@tag), params: { tag: { name: 'Updated Tag' } }
     @tag.reload
     assert_redirected_to @tag
   end
 
-  test 'should destroy tag' do
+  test 'should destroy tag as regular user' do
+    login(users(:regular))
     assert_difference('Tag.count', -1) do
       delete tag_url(@tag)
     end

@@ -1,0 +1,11 @@
+regular:
+  first_name: Regular
+  last_name: User
+  email: regular@example.com
+  encrypted_password: ""
+
+admin:
+  first_name: Admin
+  last_name: User
+  email: admin@example.com
+  encrypted_password: ""

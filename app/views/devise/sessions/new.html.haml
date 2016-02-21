@@ -1,0 +1,15 @@
+- @title = 'Sign in'
+%h1= @title
+
+= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'form-vertical' }) do |f|
+  .form-group
+    = f.label :email, nil, class: 'control-label'
+    = f.text_field :email, class: 'form-control'
+
+  .form-group
+    = f.label :password, nil, class: 'control-label'
+    = link_to '(Forgot password?)', new_password_path(resource_name), tabindex: '-1'
+    = f.password_field :password, class: 'form-control', autocomplete: 'off'
+
+  .form-group
+    = f.submit 'Sign in', class: 'btn btn-success'

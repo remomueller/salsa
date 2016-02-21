@@ -2,11 +2,12 @@
 
 # Allows moves to be created, viewed, and filtered
 class MovesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_move, only: [:show, :edit, :update, :destroy]
 
   # GET /moves
   def index
-    move_scope = Move.all
+    move_scope = current_user.moves
     move_scope = move_scope.joins(:tags).merge(Tag.where(name: params[:tag])) if params[:tag].present?
     @moves = move_scope
   end
@@ -17,7 +18,7 @@ class MovesController < ApplicationController
 
   # GET /moves/new
   def new
-    @move = Move.new
+    @move = current_user.moves.new
   end
 
   # GET /moves/1/edit
@@ -26,8 +27,9 @@ class MovesController < ApplicationController
 
   # POST /moves
   def create
-    @move = Move.new(move_params)
+    @move = current_user.moves.new(move_params)
     if @move.save
+      @move.update_tags(params[:move][:tag_tokens])
       redirect_to @move, notice: 'Move was successfully created.'
     else
       render :new
@@ -37,6 +39,7 @@ class MovesController < ApplicationController
   # PATCH /moves/1
   def update
     if @move.update(move_params)
+      @move.update_tags(params[:move][:tag_tokens])
       redirect_to @move, notice: 'Move was successfully updated.'
     else
       render :edit
@@ -52,10 +55,11 @@ class MovesController < ApplicationController
   private
 
   def set_move
-    @move = Move.find_by_id params[:id]
+    @move = current_user.moves.find_by_id params[:id]
+    redirect_to moves_path unless @move
   end
 
   def move_params
-    params.require(:move).permit(:name, :description, :video_url, :tag_tokens)
+    params.require(:move).permit(:name, :description, :video_url)
   end
 end

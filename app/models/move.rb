@@ -8,9 +8,10 @@ class Move < ApplicationRecord
   # Scopes
 
   # Validation
-  validates :name, presence: true
+  validates :name, :user_id, presence: true
 
   # Relationships
+  belongs_to :user
   has_many :move_tags
   has_many :tags, through: :move_tags
 
@@ -20,16 +21,11 @@ class Move < ApplicationRecord
     tags.pluck(:name).join(', ')
   end
 
-  def tag_tokens=(tokens)
+  def update_tags(tokens)
     clean_tokens = tokens.to_s.split(',').collect(&:strip).reject(&:blank?).uniq
-    self.tags = clean_tokens.collect do |token|
-      find_or_create_tag(token)
+    move_tags.destroy_all
+    clean_tokens.each do |token|
+      tags << Tag.find_or_create_tag(token, user_id)
     end
-    save
-  end
-
-  def find_or_create_tag(token)
-    token_name = token.downcase.strip
-    Tag.where('LOWER(name) = ?', token_name).first_or_create(name: token_name)
   end
 end
