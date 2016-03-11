@@ -27,8 +27,7 @@
   .form-group
     = f.label :description, nil, class: 'col-md-2 control-label'
     .col-md-10
-      =# TODO: Find out why line-breaks are being expanded into spaces.
-      = f.text_area :description, class: 'form-control', rows: 10, value: move.description.to_s.gsub("\r\n", "\r")
+      = f.text_area :description, class: 'form-control', rows: 10
 
   .form-group
     = f.label :tag_tokens, nil, class: 'col-md-2 control-label'
