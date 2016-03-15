@@ -2,7 +2,8 @@
 
 source 'https://rubygems.org'
 
-gem 'rails',                '>= 5.0.0.beta2', '< 5.1'
+# gem 'rails',                '>= 5.0.0.beta2', '< 5.1'
+gem 'rails', github: 'rails/rails', ref: 'd54de08'
 
 # Database Adapter
 gem 'pg',                   '0.18.4'
@@ -22,7 +23,7 @@ gem 'uglifier',             '>= 1.3.0'
 
 gem 'jbuilder',             '~> 2.0'
 gem 'jquery-rails'
-gem 'turbolinks'
+gem 'turbolinks',           '~> 5.0.0.beta2'
 
 # # Action Cable dependencies for the Redis adapter
 # gem 'redis',                '~> 3.0'
