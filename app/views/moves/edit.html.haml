@@ -1,7 +1,11 @@
-%h1 Editing Move
+- @title = "#{@move.name_was} Edit"
 
-= render 'form', move: @move
+- content_for :header do
+  .background-gradient
+  .header-container
+    .container
+      %h1.page-heading
+        = link_to @move.name_was, @move
+        Edit
 
-= link_to 'Show', @move
-|
-= link_to 'Back', moves_path
+.dashboard-container= render 'form', move: @move

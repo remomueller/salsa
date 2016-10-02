@@ -9,7 +9,7 @@ class MovesController < ApplicationController
   def index
     move_scope = current_user.moves
     move_scope = move_scope.joins(:tags).merge(Tag.where(name: params[:tag])) if params[:tag].present?
-    @moves = move_scope
+    @moves = move_scope.page(params[:page]).per(40)
   end
 
   # GET /moves/1

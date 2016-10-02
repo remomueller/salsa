@@ -23,10 +23,12 @@
     = stylesheet_link_tag 'application', media: 'all', data: { turbolinks_track: 'reload' }
     = javascript_include_tag 'application', data: { turbolinks_track: 'reload' }
     = javascript_tag "var root_url='#{request.script_name + '/'}';"
-  %body
-    = link_to 'HOME', root_path
+  %body#top
+    - unless @simple_layout
+      = render 'layouts/menu'
+      = render 'layouts/flash_messages'
 
-    = render 'layouts/flash_messages'
+    = yield :header
 
     .container.body-content
       = yield

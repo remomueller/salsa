@@ -16,8 +16,5 @@ Rails.application.routes.draw do
 
   resources :tags
 
-  devise_for :users, path_names: { sign_up: 'join',
-                                   sign_in: 'login',
-                                   sign_out: 'logout' },
-                     path: ''
+  devise_for :users, path_names: { sign_up: 'join', sign_in: 'login' }, path: ''
 end

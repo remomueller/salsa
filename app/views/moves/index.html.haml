@@ -1,35 +1,59 @@
-%h1 Moves
+- @title = 'Moves'
 
-= link_to 'New Move', new_move_path
+- content_for :header do
+  .background-gradient
+  .header-container
+    .container
+      %h1.page-heading
+        .pull-right
+          = link_to plus_or('New Move'), new_move_path, class: 'btn btn-accent btn-shadow'
+          .per-page= render 'layouts/per_page', per_page: 40, object_count: @moves.total_count
+        = @title
+        = render 'search/toggle'
+
+= render 'search/simple', url: moves_path
+
 - if params[:tag].present?
-  Filtering by
-  = succeed '.' do
-    %code=params[:tag]
-  = link_to 'Clear Filter', moves_path
+  .dashboard-container
+    Filtering by
+    = succeed '.' do
+      %code=params[:tag]
+    = link_to 'Clear Filter', moves_path
 
-%table.table.table-striped
-  %thead
-    %tr
-      %th Name
-      %th Tags
-      %th Created
-      %th.center Practiced Today
-      %th{ colspan: 2 }
+- if @moves.count == 0
+  .jumbotron
+    %p.center No moves found.
+- else
+  .dashboard-container
+    %table.table.table-striped.table-borderless.table-hover
+      %col
+      %col
+      %col
+      %col
+      %col{ width: '1px' }
+      %thead
+        %tr
+          %th Name
+          %th Tags
+          %th Created
+          %th.center Practiced Today
+          %th
 
-  %tbody
-    - @moves.each do |move|
-      %tr
-        %td= link_to move.name, move
-        %td
-          - move.tags.each_with_index do |tag, index|
-            - if index + 1 == move.tags.count
-              %small= link_to tag.name, moves_path(tag: tag.name)
-            - else
-              = succeed ',' do
-                %small= link_to tag.name, moves_path(tag: tag.name)
-        %td= move.created_at.strftime('%a, %B %d, %Y')
-        %td.center
-          - if move.practiced_today?
-            %span.glyphicon.glyphicon-check
-        %td= link_to 'Edit', edit_move_path(move)
-        %td= link_to 'Destroy', move, method: :delete, data: { confirm: 'Are you sure?' }
+      %tbody
+        - @moves.each do |move|
+          %tr
+            %td= link_to move.name, move
+            %td
+              - move.tags.each_with_index do |tag, index|
+                - if index + 1 == move.tags.count
+                  %small= link_to tag.name, moves_path(tag: tag.name)
+                - else
+                  = succeed ',' do
+                    %small= link_to tag.name, moves_path(tag: tag.name)
+            %td= move.created_at.strftime('%a, %B %d, %Y')
+            %td.center
+              - if move.practiced_today?
+                %span.glyphicon.glyphicon-check
+            %td
+              = render 'layouts/edit_delete_dropdown', edit_url: edit_move_path(move), delete_url: move, delete_confirmation: 'Delete move?'
+  .center= paginate @moves, theme: 'bootstrap'

@@ -1,7 +1,11 @@
-%h1 Editing Tag
+- @title = "#{@tag.name_was} Edit"
 
-= render 'form', tag: @tag
+- content_for :header do
+  .background-gradient
+  .header-container
+    .container
+      %h1.page-heading
+        = link_to @tag.name_was, @tag
+        Edit
 
-= link_to 'Show', @tag
-|
-= link_to 'Back', tags_path
+.dashboard-container= render 'form', tag: @tag

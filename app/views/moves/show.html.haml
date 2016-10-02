@@ -1,33 +1,59 @@
-%h1= @move.name
+- @title = @move.name
 
-= link_to 'Edit', edit_move_path(@move), class: 'btn btn-xs btn-default'
-= link_to 'Back', moves_path, class: 'btn btn-xs btn-default'
-- if @move.practiced_today?
-  %span.label.label-success Practiced!
-- else
-  = link_to 'I Practiced This Today!', practiced_today_move_path(@move), method: :post, class: 'btn btn-primary btn-xs'
+- content_for :header do
+  .background-gradient
+  .header-container
+    .container
+      %h1.page-heading
+        .pull-right
+          .dropdown
+            = link_to '#', class: 'btn btn-default dropdown-toggle', data: { toggle: 'dropdown' } do
+              Actions
+              %strong.caret
 
-%p
-  %strong Name
-  = @move.name
-
-%p
-  %strong Description
-  = simple_format @move.description
-
-%p
-  %strong Tags
-  - @move.tags.each do |tag|
-    = link_to tag.name, tag, class: 'btn btn-xs btn-default'
+            %ul.dropdown-menu.dropdown-menu-right
+              %li
+                = link_to edit_move_path(@move) do
+                  %span.glyphicon.glyphicon-edit
+                  Edit
+              %li.divider{ role: 'separator' }
+              %li
+                = link_to @move, method: :delete, data: { confirm: 'Delete move?' } do
+                  .text-danger
+                    %span.glyphicon.glyphicon-trash
+                    Delete
+        = @title
 
 - if @move.video_url.present?
-  %hr
+  .dashboard-container{ style: 'padding: 0' }
+    .embed-responsive.embed-responsive-16by9{ style: 'margin-bottom: 20px' }
+      %iframe.embed-responsive-item{ src: @move.video_url, webkitallowfullscreen: true, mozallowfullscreen: true, allowfullscreen: true }
 
-  .embed-responsive.embed-responsive-16by9{ style: 'margin-bottom: 20px' }
-    %iframe.embed-responsive-item{ src: @move.video_url, webkitallowfullscreen: true, mozallowfullscreen: true, allowfullscreen: true }
+.dashboard-container
+  - if @move.practiced_today?
+    %span.label.label-success Practiced!
+  - else
+    = link_to 'I Practiced This Today!', practiced_today_move_path(@move), method: :post, class: 'btn btn-primary'
 
-%p
-  %strong Practice Dates
-  %ul
-    - @move.user_moves.pluck(:practiced_on).each do |d|
-      %li= d.strftime('%a, %B %d, %Y')
+.dashboard-container
+  %table.table.table-borderless
+    %col.hidden-xs{ width: '30%' }
+    %col.hidden-sm.hidden-md.hidden-lg{ width: '50%' }
+    %tr
+      %th Name
+      %td= @move.name
+
+    %tr
+      %th Description
+      %td= simple_format @move.description
+
+    %tr
+      %th Tags
+      %td
+        - @move.tags.each do |tag|
+          = link_to tag.name, tag, class: 'btn btn-xs btn-default'
+  %p
+    %strong Practice Dates
+    %ul
+      - @move.user_moves.pluck(:practiced_on).each do |d|
+        %li= d.strftime('%a, %B %d, %Y')

@@ -1,4 +1,13 @@
-%h1 Version
+- @title = 'Version'
 
-.jumbotron
-  %p.center= Salsa::VERSION::STRING
+- content_for :header do
+  .background-gradient
+  .header-container
+    .container
+      %h1.page-heading= @title
+
+.text-center{ style: 'margin-top:40px' }
+  %p.lead
+    %span.transparent-stamp
+      Version
+      %strong= Salsa::VERSION::STRING

@@ -7,7 +7,7 @@ class TagsController < ApplicationController
 
   # GET /tags
   def index
-    @tags = current_user.tags
+    @tags = current_user.tags.page(params[:page]).per(40)
   end
 
   # GET /tags/1

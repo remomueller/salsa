@@ -37,4 +37,4 @@
   .form-group
     .col-md-10.col-md-offset-2
       = f.submit nil, class: 'btn btn-primary'
-      = link_to 'cancel', (move.new_record? ? moves_path : move)
+      = link_to 'Cancel', (move.new_record? ? moves_path : move), class: 'btn btn-link'

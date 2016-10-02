@@ -1,11 +1,40 @@
-%h1= @tag.name
+- @title = @tag.name
 
-= link_to 'Edit', edit_tag_path(@tag), class: 'btn btn-xs btn-default'
-= link_to 'Back', tags_path, class: 'btn btn-xs btn-default'
+- content_for :header do
+  .background-gradient
+  .header-container
+    .container
+      %h1.page-heading
+        .pull-right
+          .dropdown
+            = link_to '#', class: 'btn btn-default dropdown-toggle', data: { toggle: 'dropdown' } do
+              Actions
+              %strong.caret
 
-%p
-  %strong Moves
-  %ul
-    - @tag.moves.each do |move|
-      %li= link_to move.name, move
+            %ul.dropdown-menu.dropdown-menu-right
+              %li
+                = link_to edit_tag_path(@tag) do
+                  %span.glyphicon.glyphicon-edit
+                  Edit
+              %li.divider{ role: 'separator' }
+              %li
+                = link_to @tag, method: :delete, data: { confirm: 'Delete tag?' } do
+                  .text-danger
+                    %span.glyphicon.glyphicon-trash
+                    Delete
+        = @title
+
+.dashboard-container
+  %table.table.table-borderless
+    %col.hidden-xs{ width: '30%' }
+    %col.hidden-sm.hidden-md.hidden-lg{ width: '50%' }
+    %tr
+      %th Name
+      %td= @tag.name
+    %tr
+      %th Moves
+      %td
+        %ul.list-unstyled
+          - @tag.moves.each do |move|
+            %li= link_to move.name, move
 
