@@ -1,8 +1,12 @@
-%h1 Welcome
+- @title = 'Welcome'
 
-= link_to 'Sign In', new_user_session_path
-= link_to 'Register', new_user_registration_path
-= current_user.name if current_user
+= render 'layouts/simple_header'
 
 - if current_user
- = link_to 'Moves', moves_path
+  .text-center{ style: 'margin-top:40px' }
+    %p.lead
+      %span.transparent-stamp
+        %strong= current_user.name
+- else
+  = link_to 'Sign In', new_user_session_path
+  = link_to 'Register', new_user_registration_path
