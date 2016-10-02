@@ -1,13 +1,11 @@
 http://localhost
 Salsa
-support@example.com
 localhost
 25
 plain
 smtp@example.com
 smtp_username
 smtp_password
-UA-googleanalytics-1
 postgres
 
 
