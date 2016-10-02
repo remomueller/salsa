@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Allows existing tags to be updated
+# Allows existing tags to be updated.
 class TagsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_tag, only: [:show, :edit, :update, :destroy]

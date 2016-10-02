@@ -1,7 +1,7 @@
 ## 1.0.0
 
 - **General Changes**
-  - Initial framework using Rails 5.0.0.beta2
+  - Initial framework using Rails 5.0.0.1
   - Added OpenSans font
   - Added user registration and login
 - **Moves Added**

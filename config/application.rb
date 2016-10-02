@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require File.expand_path('../boot', __FILE__)
+require_relative 'boot'
 
 require 'rails/all'
 
@@ -15,10 +15,12 @@ module Salsa
     # -- all .rb files in that directory are automatically loaded.
 
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
-    # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
-    # config.time_zone = 'Central Time (US & Canada)'
+    # Run "rails time:zones" for a list of tasks for finding time zone names. Default is UTC.
     config.time_zone = 'Eastern Time (US & Canada)'
 
-    config.action_view.field_error_proc = Proc.new { |html_tag, instance| "<span class=\"has-error\">#{html_tag}</span>".html_safe }
+    # Overwrite Rails errors to use Bootstrap CSS classes
+    config.action_view.field_error_proc = Proc.new do |html_tag, instance|
+      "<span class=\"has-error\">#{html_tag}</span>".html_safe
+    end
   end
 end

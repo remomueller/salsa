@@ -15,20 +15,20 @@ class ActiveSupport::TestCase
   # Add more helper methods to be used by all tests here...
 end
 
-# # Set up ActionController tests
-# class ActionController::TestCase
-#   include Devise::TestHelpers
+# Set up ActionController tests
+class ActionController::TestCase
+  include Devise::Test::ControllerHelpers
 
-#   def login(resource)
-#     @request.env['devise.mapping'] = Devise.mappings[resource]
-#     sign_in(resource.class.name.downcase.to_sym, resource)
-#   end
-# end
+  def login(resource)
+    @request.env['devise.mapping'] = Devise.mappings[resource]
+    sign_in(resource, scope: resource.class.name.downcase.to_sym)
+  end
+end
 
 # Set up ActionDispatch tests
 class ActionDispatch::IntegrationTest
   def login(user)
-    sign_in_as(user, '1234567890abcdefg')
+    sign_in_as(user, '1234567890')
   end
 
   def sign_in_as(user, password)

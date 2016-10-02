@@ -1,6 +1,5 @@
 website_url:          "<%= print "Enter Website URL: "; gets.chomp.gsub(/(\/)*$/, '') %>"
-website_name:         "<%= print "Enter Website Name: "; gets.chomp %>"
-support_email:        "<%= print "Enter support email address: "; ga = gets.chomp; ga %>"
+website_name:         "<%= print "Enter Website Name: [Salsa]"; s = gets.chomp; s == '' ? 'Salsa' : s %>"
 
 emails_enabled:       "true"
 smtp_address:         "<%= print "Enter SMTP Address [localhost]: "; s = gets.chomp; s == '' ? 'localhost' : s %>"
@@ -12,5 +11,4 @@ smtp_password:        "<%= print "Enter SMTP Password [password]: "; s = gets.ch
 
 devise_pepper:        "<%= SecureRandom.hex(64) %>"
 website_secret:       "<%= SecureRandom.hex(64) %>"
-
-google_analytics:     "<%= print "Google Analytics ID: "; gets.chomp %>"
+cookie_store_key:     "_salsa_session"
