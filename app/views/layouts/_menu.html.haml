@@ -19,14 +19,6 @@
           = link_to tags_path do
             %span.glyphicon.glyphicon-tag
             Tags
-        %li.visible-xs
-          = link_to moves_path do
-            %span.glyphicon.glyphicon-book
-            Moves
-        %li.visible-xs
-          = link_to tags_path do
-            %span.glyphicon.glyphicon-tag
-            Tags
 
       - if current_user
         %form.navbar-form.navbar-right.hidden-sm
@@ -42,6 +34,10 @@
                 = link_to moves_path do
                   %span.glyphicon.glyphicon-book
                   Moves
+              %li
+                = link_to tags_path do
+                  %span.glyphicon.glyphicon-tag
+                  Tags
               %li.divider
               %li.disabled
                 = link_to '#', data: { object: 'suppress-click' } do
