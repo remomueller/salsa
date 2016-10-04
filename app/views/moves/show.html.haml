@@ -25,15 +25,19 @@
         = @title
 
 - if @move.video_url.present?
-  .dashboard-container{ style: 'padding: 0' }
-    .embed-responsive.embed-responsive-16by9{ style: 'margin-bottom: 20px' }
+  .move-video-container
+    .embed-responsive.embed-responsive-16by9
       %iframe.embed-responsive-item{ src: @move.video_url, webkitallowfullscreen: true, mozallowfullscreen: true, allowfullscreen: true }
 
 .dashboard-container
   - if @move.practiced_today?
     %span.label.label-success Practiced!
   - else
-    = link_to 'I Practiced This Today!', practiced_today_move_path(@move), method: :post, class: 'btn btn-primary'
+    %span.hidden-xs
+      .center
+        = link_to 'I Practiced This Today!', practiced_today_move_path(@move), method: :post, class: 'btn btn-lg btn-primary'
+    %span.hidden-sm.hidden-md.hidden-lg
+      = link_to 'I Practiced This Today!', practiced_today_move_path(@move), method: :post, class: 'btn btn-primary btn-block'
 
 .dashboard-container
   %table.table.table-borderless
