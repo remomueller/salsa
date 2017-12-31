@@ -21,3 +21,4 @@
   - Updated to haml 5.0.4
   - Updated to kaminari 1.1.1
   - Updated to simplecov 0.15.1
+  - Updated to bootsnap 1.1.7
