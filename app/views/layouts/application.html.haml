@@ -1,34 +1,24 @@
 !!!
-%html
+%html{ lang: "en" }
   %head
     %meta{ charset: "utf-8" }
     %meta{ content: "IE=Edge,chrome=1", http: { equiv: "X-UA-Compatible" } }
-    %meta{ name: "viewport", content: "width=device-width, initial-scale=1.0" }
-    %meta{ name: "description", content: "An app to help remember a more extensive salsa vocabulary, by highlighting moves not practiced recently, suggesting new patterns to chain to existing moves, and a way to quickly search through all moves." }
-    %meta{ name: "author", content: "Remo Mueller" }
-    %meta{ name: "keywords", content: "salsa moves, learning salsa" }
+    %meta{ name: "viewport", content: "width=device-width, initial-scale=1, shrink-to-fit=no" }
+    = render "layouts/meta/general"
     -# Don't cache any pages
     %meta{ name: "turbolinks-cache-control", content: "no-cache" }
     %title= [@title, ENV["website_name"]].compact.join(" - ")
-
     =# favicon_link_tag
-    = csrf_meta_tags
     = action_cable_meta_tag
-
-    / HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
-    /[if lt IE 9]
-      %script{ src: "//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js" }
-      %script{ src: "//oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js" }
-
+    = csrf_meta_tags
     = stylesheet_link_tag "application", media: "all", data: { turbolinks_track: "reload" }
     = javascript_include_tag "application", data: { turbolinks_track: "reload" }
     = javascript_tag "var root_url='#{request.script_name + '/'}';"
-  %body#top
-    - unless @simple_layout
-      = render "layouts/menu"
-      = render "layouts/flash_messages"
-
+  %body#top.full-page{ class: yield(:body_class) }
+    = render "layouts/flash_bar"
+    #top-menu.top-menu= render "layouts/menu"
     = yield :header
-
-    .container.body-content
-      = yield
+    .page-box-padding
+      .container= yield
+    = yield :footer
+    = render "layouts/footer"

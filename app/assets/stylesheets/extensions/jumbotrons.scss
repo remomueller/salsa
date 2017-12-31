@@ -1,0 +1,40 @@
+.jumbotron-primary,
+.jumbotron-accent,
+.jumbotron-white {
+  @include remove-last-child-bottom-margin;
+  font-size: 1.5rem;
+  font-weight: 200;
+  text-align: center;
+}
+
+.jumbotron-primary {
+  background-color: $p500-blue;
+  color: $brand-white;
+}
+
+.jumbotron-accent {
+  background-color: $p50-pink;
+  border: 5px solid rgba($brand-white, .5);
+}
+
+.jumbotron-white {
+  background-color: $brand-white;
+  color: $body-color;
+  border: 5px solid rgba(0, 0, 0, .1);
+}
+
+.jumbotron-hover {
+  cursor: pointer;
+  transition: transform 250ms ease-out;
+
+  @media (hover) {
+    &:hover {
+      box-shadow: 0 2px 15px $standard-shadow-color;
+      transform: scale(1.02);
+    }
+  }
+}
+
+.jumbotron-shadow {
+  box-shadow: 0 1px 5px $box-shadow-color;
+}

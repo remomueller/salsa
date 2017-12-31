@@ -1,27 +1,11 @@
 - @title = @move.name
 
 - content_for :header do
-  .background-gradient
   .header-container
     .container
       %h1.page-heading
-        .pull-right
-          .dropdown
-            = link_to '#', class: 'btn btn-default dropdown-toggle', data: { toggle: 'dropdown' } do
-              Actions
-              %strong.caret
-
-            %ul.dropdown-menu.dropdown-menu-right
-              %li
-                = link_to edit_move_path(@move) do
-                  %span.glyphicon.glyphicon-edit
-                  Edit
-              %li.divider{ role: 'separator' }
-              %li
-                = link_to @move, method: :delete, data: { confirm: 'Delete move?' } do
-                  .text-danger
-                    %span.glyphicon.glyphicon-trash
-                    Delete
+        .float-right
+          = render "layouts/edit_delete_dropdown", edit_url: edit_move_path(@move), delete_url: @move, delete_confirmation: "Delete #{@move.name}?"
         = @title
 
 - if @move.video_url.present?
@@ -29,35 +13,17 @@
     .embed-responsive.embed-responsive-16by9
       %iframe.embed-responsive-item{ src: @move.video_url, webkitallowfullscreen: true, mozallowfullscreen: true, allowfullscreen: true }
 
-.dashboard-container
+.mb-5
   - if @move.practiced_today?
-    %span.label.label-success Practiced!
+    %span.badge.badge-success Practiced!
   - else
-    %span.hidden-xs
-      .center
-        = link_to 'I Practiced This Today!', practiced_today_move_path(@move), method: :post, class: 'btn btn-lg btn-primary'
-    %span.hidden-sm.hidden-md.hidden-lg
-      = link_to 'I Practiced This Today!', practiced_today_move_path(@move), method: :post, class: 'btn btn-primary btn-block'
+    .d-none.d-md-block.text-center
+      = link_to "I Practiced This Today!", practiced_today_move_path(@move), method: :post, class: "btn btn-lg btn-accent btn-shadow"
+    .d-block.d-md-none
+      = link_to "I Practiced This Today!", practiced_today_move_path(@move), method: :post, class: "btn btn-accent btn-shadow btn-block"
 
 .dashboard-container
-  %table.table.table-borderless
-    %col.hidden-xs{ width: '30%' }
-    %col.hidden-sm.hidden-md.hidden-lg{ width: '50%' }
-    %tr
-      %th Name
-      %td= @move.name
-
-    %tr
-      %th Description
-      %td= simple_format @move.description
-
-    %tr
-      %th Tags
-      %td
-        - @move.tags.each do |tag|
-          = link_to tag.name, tag, class: 'btn btn-xs btn-default'
-  %p
-    %strong Practice Dates
-    %ul
-      - @move.user_moves.pluck(:practiced_on).each do |d|
-        %li= d.strftime('%a, %B %d, %Y')
+  = render "forms/horizontal/show/text", object: @move, key: :name
+  = render "forms/horizontal/show/markdown", object: @move, key: :description
+  = render "forms/horizontal/show/generic", title: "Tags", content: render("moves/tags", move: @move)
+  = render "forms/horizontal/show/generic", title: "Practice Dates", content: render("moves/practice_dates", move: @move)

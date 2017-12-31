@@ -1,0 +1,3 @@
+%ul
+  - move.user_moves.pluck(:practiced_on).each do |d|
+    %li= d.strftime("%a, %B %d, %Y")

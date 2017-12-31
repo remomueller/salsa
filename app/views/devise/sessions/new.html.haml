@@ -2,9 +2,7 @@
 
 - @simple_layout = true
 
-.background-gradient
-
-%p.lead.center.brand-white-text Welcome back!
+%p.lead.text-center Welcome back!
 
 .sign-up-form
   .sign-up-form-title
@@ -30,7 +28,7 @@
 .sign-up-form.center
   New to
   = succeed '?' do
-    = ENV['website_name']
+    = ENV["website_name"]
   = link_to 'Create an account.', new_user_registration_path
 
 =# render 'layouts/simple_footer'

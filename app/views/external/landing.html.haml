@@ -1,12 +1,12 @@
-- @title = 'Welcome'
+- @title = "Welcome"
 
-= render 'layouts/simple_header'
+= render "layouts/simple_header"
 
 - if current_user
-  .text-center{ style: 'margin-top:40px' }
-    %p.lead
-      %span.transparent-stamp
-        %strong= current_user.name
+  .jumbotron.jumbotron-accent.jumbotron-shadow
+    .text-center
+      %strong= current_user.name
 - else
-  = link_to 'Sign In', new_user_session_path
-  = link_to 'Register', new_user_registration_path
+  .jumbotron.jumbotron-accent.jumbotron-shadow.text-center
+    = link_to "Sign In", new_user_session_path, class: "btn btn-accent btn-lg"
+    = link_to "Register", new_user_registration_path, class: "btn btn-accent btn-lg"

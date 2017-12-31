@@ -1,40 +1,6 @@
-= form_for move, html: { class: 'form-horizontal' } do |f|
-  - if move.errors.any?
-    .alert.alert-warning
-      %strong
-        = pluralize move.errors.count, 'error'
-        prohibited this move from being saved
-
-      %ul
-        - move.errors.full_messages.each do |message|
-          %li= message
-
-  .form-group
-    = f.label :name, nil, class: 'col-md-2 control-label'
-    .col-md-10
-      = f.text_field :name, class: 'form-control'
-
-  .form-group
-    = f.label :video_url, nil, class: 'col-md-2 control-label'
-    .col-md-10
-      = f.text_field :video_url, class: 'form-control'
-      .alert.alert-default
-        %strong.text-muted Example
-        .text-muted
-          = surround 'https://www.youtube.com/embed/', '?rel=0&modestbranding=1&autohide=1&showinfo=0&wmode=opaque' do
-            %strong VIDEOID
-
-  .form-group
-    = f.label :description, nil, class: 'col-md-2 control-label'
-    .col-md-10
-      = f.text_area :description, class: 'form-control', rows: 10
-
-  .form-group
-    = f.label :tag_tokens, nil, class: 'col-md-2 control-label'
-    .col-md-10
-      = f.text_field :tag_tokens, class: 'form-control'
-
-  .form-group
-    .col-md-10.col-md-offset-2
-      = f.submit nil, class: 'btn btn-primary'
-      = link_to 'Cancel', (move.new_record? ? moves_path : move), class: 'btn btn-link'
+= form_with model: move, local: true do |form|
+  = render "forms/horizontal/text_field", form: form, object: move, key: :name
+  = render "forms/horizontal/text_field", form: form, object: move, key: :video_url, help_text: "Ex: https://www.youtube.com/embed/<strong>VIDEOID</strong>?rel=0&modestbranding=1&autohide=1&showinfo=0&wmode=opaque".html_safe
+  = render "forms/horizontal/text_area", form: form, object: move, key: :description, rows: 10
+  = render "forms/horizontal/text_field", form: form, object: move, key: :tag_tokens
+  = render "forms/horizontal/submit", form: form, object: move

@@ -1,0 +1,28 @@
+.footer-container {
+  background-color: $p100-grey;
+  bottom: 0;
+  height: $footer-height;
+  position: absolute;
+  width: 100%;
+
+  .footer {
+    height: $footer-height;
+    padding: 40px 0;
+  }
+
+  a {
+    color: $body-color;
+
+    &:hover,
+    &:focus,
+    &:active,
+    &.active,
+    &.disabled,
+    &[disabled] {
+    }
+  }
+
+  img {
+    @include ignore-selection;
+  }
+}

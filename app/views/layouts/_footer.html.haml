@@ -1,0 +1,10 @@
+.footer-container
+  %div{ class: defined?(container) && container.present? ? container : "container" }
+    .footer
+      .nowrap
+        .float-right
+          &#9829;
+
+        &copy;
+        = Time.zone.today.year
+        = link_to ENV["website_name"], root_path

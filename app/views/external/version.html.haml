@@ -1,13 +1,7 @@
-- @title = 'Version'
+- @title = "Version"
 
-- content_for :header do
-  .background-gradient
-  .header-container
+.background-fixed-image.background-p600-blue
+  .page-box.last-box.color-overlay.d-flex.align-items-center
     .container
-      %h1.page-heading= @title
-
-.text-center{ style: 'margin-top:40px' }
-  %p.lead
-    %span.transparent-stamp
-      Version
-      %strong= Salsa::VERSION::STRING
+      .text-center
+        .page-heading.text-white{ style: "font-size: 2rem;" }= "v#{Salsa::VERSION::STRING}"

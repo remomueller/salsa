@@ -1,0 +1,41 @@
+%li.nav-item.dropdown.d-none.d-lg-block
+  .btn-group.nav-item
+    = link_to "#", class: "nav-link dropdown-toggle", data: { toggle: "dropdown" }, aria: { haspopup: "true", expanded: "false" } do
+      = current_user.first_name
+    .dropdown-menu.dropdown-menu-right.dropdown-menu-salsa
+      .dropdown-menu-salsa-inner
+        = link_to moves_path, class: "dropdown-item" do
+          Moves
+
+        = link_to tags_path, class: "dropdown-item" do
+          Tags
+
+        .dropdown-divider
+
+        = link_to version_path, class: "dropdown-item disabled", data: { object: "suppress-click" } do
+          Salsa
+          = "v#{Salsa::VERSION::STRING}"
+
+        .dropdown-divider
+
+        = link_to destroy_user_session_path, class: "dropdown-item" do
+          Sign out
+
+%li.nav-item
+  %hr
+
+%li.nav-item.d-lg-none{ class: current_page?(moves_path) ? "active" : nil }
+  = link_to moves_path, class: "nav-link" do
+    Moves
+  - if current_page?(moves_path)
+    %span.sr-only (current)
+
+%li.nav-item.d-lg-none{ class: current_page?(tags_path) ? "active" : nil }
+  = link_to tags_path, class: "nav-link" do
+    Tags
+  - if current_page?(tags_path)
+    %span.sr-only (current)
+
+%li.nav-item.d-lg-none
+  = link_to destroy_user_session_path, class: "nav-link" do
+    Sign out

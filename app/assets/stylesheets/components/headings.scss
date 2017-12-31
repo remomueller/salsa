@@ -1,18 +1,43 @@
 .page-heading {
-  font-weight: normal !important;
+  font-weight: normal !important; // TODO: check if !important is required.
   position: relative;
-  text-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 2px 3px $standard-shadow-color;
+  word-break: break-word;
 
   .btn,
-  .dropdown {
+  .dropdown-menu {
     text-shadow: none;
+  }
+
+  > a {
+    color: $p500-pink;
+  }
+
+  > a:hover {
+    color: darken($p500-pink, 10%);
   }
 }
 
 .header-container {
-  background-color: $header-bg;
+  background-attachment: fixed;
+  background-color: $p500-blue;
+  background-image: asset-url('221_old.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   color: $brand-white;
   padding: 20px 0;
+  position: relative;
+
+  &::before {
+    background-color: rgba($p500-blue, .8);
+    bottom: 0;
+    content: ' ';
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
 
   h1,
   h2,
@@ -25,79 +50,64 @@
 
   h1 {
     font-size: 30px;
-  }
 
-  .dropdown,
-  .pull-right {
-    line-height: 33px; // h1 font size * 1.1
-    position: relative;
-    z-index: 1;
-  }
-}
-
-@media screen and (min-width: $screen-sm-min) {
-  .header-container {
-    h1 {
+    @include media-breakpoint-up(sm) {
       font-size: 38px;
     }
 
-    .dropdown,
-    .pull-right {
-      line-height: 41.8px; // h1 font size * 1.1
+    @include media-breakpoint-up(md) {
+      font-size: 41px;
     }
   }
 }
 
-@media screen and (min-width: $screen-md-min) {
-  .header-container {
-    h1 {
-      font-size: 41px
-    }
-
-    .dropdown,
-    .pull-right {
-      line-height: 45.1px; // h1 font size * 1.1
-    }
-  }
-}
-
-.header-container-offthehook {
+.header-container-hide {
   h1 {
     visibility: hidden;
   }
 }
 
-.navbar-header {
-  .navbar-brand {
-    display: block;
+.top-menu {
+  position: sticky;
+  top: 0;
+  z-index: $zindex-fixed;
 
-    &.page-title {
+  .navbar-show-scrolled {
+    display: none;
+  }
+
+  &.navbar-scrolled {
+    @include media-breakpoint-down(md) {
+      .display-small-scrolled {
+        display: block;
+      }
+    }
+
+    @include media-breakpoint-up(lg) {
+      .menu-body {
+        flex: initial;
+        white-space: nowrap;
+      }
+
+      .display-small-scrolled {
+        display: none;
+      }
+    }
+
+    .display-lg-scrolled {
       display: none;
     }
-  }
-}
 
-.navbar-header.navbar-page-title {
-  .navbar-brand {
-    display: none;
+    .navbar-hide-scrolled {
+      display: none;
+    }
 
-    &.page-title {
-      color: $brand-white;
+    .navbar-show-scrolled {
       display: block;
+      flex: 1 1 70%;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-      max-width: 300px;
-    }
-  }
-}
-
-@media screen and (min-width: $screen-sm-min) {
-  .navbar-header.navbar-page-title {
-    .navbar-brand {
-      &.page-title {
-        max-width: initial;
-      }
     }
   }
 }

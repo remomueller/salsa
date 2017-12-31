@@ -11,7 +11,8 @@ gem "bootsnap",             "1.1.7", require: false
 gem "pg",                   "0.21.0"
 
 # Gems used by project
-gem "bootstrap-sass",       "~> 3.3.7"
+gem "autoprefixer-rails"
+gem "bootstrap",            "~> 4.0.0.beta3"
 gem "carrierwave",          "~> 1.2.1"
 gem "devise",               "~> 4.4.0"
 gem "figaro",               "~> 1.1.1"
