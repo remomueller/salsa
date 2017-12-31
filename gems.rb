@@ -31,9 +31,9 @@ gem "turbolinks",           "~> 5"
 # Testing
 group :test do
   gem "minitest"
-  gem "simplecov",          "~> 0.12.0", require: false
+  gem "simplecov", "~> 0.15.1", require: false
 end
 
 group :development do
-  gem "web-console", "~> 3.0"
+  gem "web-console", ">= 3.3.0"
 end
