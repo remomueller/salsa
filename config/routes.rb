@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  root 'external#landing'
+  root "external#landing"
 
-  scope module: 'external' do
+  scope module: "external" do
     get :landing
     get :version
   end
@@ -16,5 +16,5 @@ Rails.application.routes.draw do
 
   resources :tags
 
-  devise_for :users, path_names: { sign_up: 'join', sign_in: 'login' }, path: ''
+  devise_for :users, path_names: { sign_up: "join", sign_in: "login" }, path: ""
 end

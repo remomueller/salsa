@@ -12,8 +12,9 @@
   - Moves can be tagged
   - Tags can be used to search for similar moves
 - **Gem Changes**
-  - Updated to ruby 2.5.0
   - Updated `Gemfile` to `gems.rb`
+  - Updated to ruby 2.5.0
+  - Updated to rails 5.2.0.beta2
   - Updated to pg 0.21.0
   - Updated to devise 4.4.0
   - Updated to kaminari 1.1.1
