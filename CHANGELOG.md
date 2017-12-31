@@ -11,3 +11,5 @@
 - **Tags Added**
   - Moves can be tagged
   - Tags can be used to search for similar moves
+- **Gem Changes**
+  - Updated to ruby 2.5.0
