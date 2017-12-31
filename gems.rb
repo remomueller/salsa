@@ -8,12 +8,12 @@ gem "rails",                "5.2.0.beta2"
 gem "pg",                   "0.21.0"
 
 # Gems used by project
-gem "devise",               "~> 4.4.0"
 gem "bootstrap-sass",       "~> 3.3.7"
-gem "kaminari",             "~> 1.1.1"
-gem "haml",                 "~> 5.0.4"
+gem "carrierwave",          "~> 1.2.1"
+gem "devise",               "~> 4.4.0"
 gem "figaro",               "~> 1.1.1"
-gem "carrierwave",          "~> 0.11.2"
+gem "haml",                 "~> 5.0.4"
+gem "kaminari",             "~> 1.1.1"
 gem "font-awesome-rails"
 
 # Rails Defaults

@@ -16,6 +16,7 @@
   - Updated to ruby 2.5.0
   - Updated to rails 5.2.0.beta2
   - Updated to pg 0.21.0
+  - Updated to carrierwave 1.2.1
   - Updated to devise 4.4.0
   - Updated to haml 5.0.4
   - Updated to kaminari 1.1.1
