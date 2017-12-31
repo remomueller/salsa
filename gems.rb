@@ -8,7 +8,7 @@ gem "rails",                "5.0.0.1"
 gem "pg",                   "0.21.0"
 
 # Gems used by project
-gem "devise",               "~> 4.2.0"
+gem "devise",               "~> 4.4.0"
 gem "bootstrap-sass",       "~> 3.3.7"
 gem "kaminari",             "~> 1.1.1"
 gem "haml",                 "~> 4.0.7"
