@@ -15,3 +15,4 @@
   - Updated to ruby 2.5.0
   - Updated `Gemfile` to `gems.rb`
   - Updated to pg 0.21.0
+  - Updated to kaminari 1.1.1
