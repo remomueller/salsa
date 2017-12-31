@@ -31,8 +31,7 @@
 
 # Other Files
 
-/Gemfile.lock
-/config/secrets.yml
+/gems.locked
 /db/schema.rb
 /doc/app/*
 

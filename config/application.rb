@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require_relative 'boot'
+require_relative "boot"
 
-require 'rails/all'
+require "rails/all"
 
-# Require the gems listed in Gemfile, including any gems
+# Require the gems listed in gems.rb, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
@@ -16,11 +16,9 @@ module Salsa
 
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rails time:zones" for a list of tasks for finding time zone names. Default is UTC.
-    config.time_zone = 'Eastern Time (US & Canada)'
+    config.time_zone = "Eastern Time (US & Canada)"
 
-    # Overwrite Rails errors to use Bootstrap CSS classes
-    config.action_view.field_error_proc = Proc.new do |html_tag, instance|
-      "<span class=\"has-error\">#{html_tag}</span>".html_safe
-    end
+    # Ignores custom error DOM elements created by Rails.
+    config.action_view.field_error_proc = proc { |html_tag, _instance| html_tag }
   end
 end

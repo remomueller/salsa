@@ -13,3 +13,4 @@
   - Tags can be used to search for similar moves
 - **Gem Changes**
   - Updated to ruby 2.5.0
+  - Updated `Gemfile` to `gems.rb`
