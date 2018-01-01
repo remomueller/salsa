@@ -11,6 +11,6 @@ a way to quickly search through all moves.
 
 ## Copyright
 
-Copyright (c) 2016 Remo Mueller. See
+Copyright (c) 2018 Remo Mueller. See
 [LICENSE](https://github.com/remomueller/salsa/blob/master/LICENSE)
 for further details.
