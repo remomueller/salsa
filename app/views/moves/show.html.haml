@@ -15,7 +15,8 @@
 
 .mb-5
   - if @move.practiced_today?
-    %span.badge.badge-success Practiced!
+    .jumbotron.jumbotron-accent.jumbotron-shadow.text-center
+      %strong Practiced!
   - else
     .d-none.d-md-block.text-center
       = link_to "I Practiced This Today!", practiced_today_move_path(@move), method: :post, class: "btn btn-lg btn-accent btn-shadow"

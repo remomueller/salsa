@@ -49,7 +49,7 @@
             %td= move.created_at.strftime('%a, %B %d, %Y')
             %td.text-center
               - if move.practiced_today?
-                %i.fa.fa-check-square
+                %i.fa.fa-check-square.text-accent
               - else
                 %i.fa.fa-square-o
             %td

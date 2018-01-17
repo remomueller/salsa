@@ -13,8 +13,9 @@
 }
 
 .jumbotron-accent {
-  background-color: $p50-pink;
-  border: 5px solid rgba($brand-white, .5);
+  background-color: $p500-pink;
+  border: 5px solid $p200-pink;
+  color: $brand-white;
 }
 
 .jumbotron-white {
