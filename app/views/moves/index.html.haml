@@ -32,7 +32,7 @@
           %th Name
           %th Tags
           %th Created
-          %th.center Practiced Today
+          %th.text-center Practiced Today
           %th
 
       %tbody
@@ -47,9 +47,11 @@
                   = succeed ',' do
                     %small= link_to tag.name, moves_path(tag: tag.name)
             %td= move.created_at.strftime('%a, %B %d, %Y')
-            %td.center
+            %td.text-center
               - if move.practiced_today?
-                %span.glyphicon.glyphicon-check
+                %i.fa.fa-check-square
+              - else
+                %i.fa.fa-square-o
             %td
               = render 'layouts/edit_delete_dropdown', edit_url: edit_move_path(move), delete_url: move, delete_confirmation: 'Delete move?'
   .center= paginate @moves, theme: 'bootstrap'
